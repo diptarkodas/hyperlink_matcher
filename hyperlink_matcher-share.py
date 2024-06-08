@@ -1,5 +1,15 @@
 import requests
 from bs4 import BeautifulSoup
+import re
+
+
+# import smtplib
+# from email.mime.text import MIMEText
+# from email.mime.multipart import MIMEMultipart
+# from datetime import date
+
+
+
 
 # Function to read keywords from a file
 def read_keywords(file_path):
@@ -51,12 +61,15 @@ def fetch_hyperlinks_and_descriptions(url):
         return [], []
 
 # Function to calculate the weight based on keyword matches
-def calculate_weight(text, keywords):
+def calculate_weight(text, keyphrases):
     weight = 0
-    for keyword in keywords:
-        if keyword.lower() in text.lower():
+    for keyphrase in keyphrases:
+        pattern = r'\b' + re.escape(keyphrase) + r'\b'
+        if re.search(pattern, text, re.IGNORECASE):
             weight += 1
     return weight
+
+
 
 # Read keywords from the keyword.dat file
 keyword_file = 'keyword.dat'
@@ -103,11 +116,11 @@ for hyperlink, description, weight in final:
     
 ## Generate the consolidated list
 
-# consolidated_list = "today's sorted papers from the arXiv :\n\n"
+# consolidated_list = "Consolidated List:\n\n"
 # for hyperlink, description, weight in final:
 #     title = description.split('%%', 1)[0]  # Extract the title from the description
 #     consolidated_list += f"Hyperlink: {hyperlink}\n"
-#     consolidated_list += f" {title}\n"
+#     consolidated_list += f"Title: {title}\n"
 #     consolidated_list += f"Weight: {weight}\n"
 #     consolidated_list += "---\n"
 
