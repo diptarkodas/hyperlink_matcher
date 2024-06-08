@@ -103,11 +103,11 @@ for hyperlink, description, weight in final:
     
 ## Generate the consolidated list
 
-# consolidated_list = "Consolidated List:\n\n"
+# consolidated_list = "today's sorted papers from the arXiv :\n\n"
 # for hyperlink, description, weight in final:
 #     title = description.split('%%', 1)[0]  # Extract the title from the description
 #     consolidated_list += f"Hyperlink: {hyperlink}\n"
-#     consolidated_list += f"Title: {title}\n"
+#     consolidated_list += f" {title}\n"
 #     consolidated_list += f"Weight: {weight}\n"
 #     consolidated_list += "---\n"
 
